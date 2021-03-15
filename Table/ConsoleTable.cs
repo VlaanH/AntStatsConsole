@@ -10,22 +10,20 @@ namespace AntminerParser
        public static void write(List<string> list)
        {
            
+           var space = 4;
            
             
             string str=default;
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count/10; i++)
             {
+                int j = i * 10;
                
-
-               
-                
-                
               
-                if ( Regex.Match(Convert.ToString((double)i/10), @"([,]+)").Groups[1].Value=="")
-                { var space = 4;
+                
+                   
                     try
                     {
-                        if (i==0)
+                        if (j==0)
                         {
                            
                             str += $"|{CenterValue.addlength(list[0],list[0].Length+space)}|{CenterValue.addlength(list[1],list[1].Length+space)}|" +
@@ -40,11 +38,11 @@ namespace AntminerParser
                             
                             
                            
-                                str += $"|{CenterValue.addlength(list[i+1],list[0].Length+space)}|{ CenterValue.addlength(list[i+2],list[1].Length+space)}|" +
-                                       $"{ CenterValue.addlength(list[i+3],list[2].Length+space)}|{ CenterValue.addlength(list[i+4],"Watts".Length+space+4)}|" +
-                                       $"{ CenterValue.addlength(list[i+5],list[4].Length+space)}|{ CenterValue.addlength(list[i+6],"GH/S(RT)".Length+space)}|" +
-                                       $"{ CenterValue.addlength(list[i+7],list[6].Length+space)}|{ CenterValue.addlength(list[i+8],list[7].Length+space)}|" +
-                                       $"{ CenterValue.addlength(list[i+9],"Temp(Chip2)".Length+space)}|{ CenterValue.addlength(list[i+10],list[9].Length+space)}"+"\n\r";
+                                str += $"|{CenterValue.addlength(list[j+1],list[0].Length+space)}|{ CenterValue.addlength(list[j+2],list[1].Length+space)}|" +
+                                       $"{ CenterValue.addlength(list[j+3],list[2].Length+space)}|{ CenterValue.addlength(list[j+4],"Watts".Length+space+4)}|" +
+                                       $"{ CenterValue.addlength(list[j+5],list[4].Length+space)}|{ CenterValue.addlength(list[j+6],"GH/S(RT)".Length+space)}|" +
+                                       $"{ CenterValue.addlength(list[j+7],list[6].Length+space)}|{ CenterValue.addlength(list[j+8],list[7].Length+space)}|" +
+                                       $"{ CenterValue.addlength(list[j+9],"Temp(Chip2)".Length+space)}|{ CenterValue.addlength(list[j+10],list[9].Length+space)}"+"\n\r";
  
                         }
                             
@@ -52,26 +50,29 @@ namespace AntminerParser
                     }
                     catch (Exception e)
                     {
-                        try
-                        {
-                            str += $"|{CenterValue.addlength(list[i+1],list[0].Length+space)}|{ CenterValue.addlength(list[i+2],list[1].Length+space)}|" +
-                                   $"{ CenterValue.addlength(list[i+3],list[2].Length+space)}|{ CenterValue.addlength(list[i+4],"Watts".Length+space+4)}|" +
-                                   $"{ CenterValue.addlength(list[i+5],list[4].Length+space)}|{ CenterValue.addlength(list[i+6],"GH/S(RT)".Length+space)}|" +"\n\r";
-
-                        }
-                        catch (Exception exception)
-                        {
-                          
-                        }
+                       
                         
                     }
-                }
+                   
                     
                       
                     
                     
             }
-                
+              
+            try
+            {
+                str += $"|{CenterValue.addlength(list[list.Count-6],list[0].Length+space)}|{ CenterValue.addlength(list[list.Count-5],list[1].Length+space)}|" +
+                       $"{ CenterValue.addlength(list[list.Count-4],list[2].Length+space)}|{ CenterValue.addlength(list[list.Count-3],"Watts".Length+space+4)}|" +
+                       $"{ CenterValue.addlength(list[list.Count-2],list[4].Length+space)}|{ CenterValue.addlength(list[list.Count-1],"GH/S(RT)".Length+space)}|" +"\n\r";
+
+            }
+            catch (Exception exception)
+            {
+                          
+            }
+            
+            
             Console.WriteLine(str);
             
         }
